@@ -1,3 +1,44 @@
+About this forked repo
+======================
+
+This a forked repository of https://github.com/gturri/dokuJClient
+
+
+No source code has been modified, it's just a conversion from ant to maven.
+Files have been moved to separate tests from others sources, and resources from java files.
+
+dokuJClient requires a dependency which is not deploy on Maven Central, so you need to package this jar yourself.
+
+If you just want to install it on your local repository cache
+-------------------------------------------------------------
+
+    git clone https://github.com/timroes/aXMLRPC
+    cd aXMLRPC
+    mvn clean install
+    cd ..
+    git clone https://github.com/lgringo/dokuJClient
+    cd dokuJClient
+    mvn clean install
+    cd ..
+
+If you have a private repository
+--------------------------------
+
+    git clone https://github.com/timroes/aXMLRPC
+    cd aXMLRPC
+    mvn clean package source:jar javadoc:jar deploy:deploy-file -Dfile=target/aXMLRPC-1.7.2.jar -Dsources=target/aXMLRPC-1.7.2-sources.jar -Djavadoc=target/aXMLRPC-1.7.2-javadoc.jar -DgroupId=de.timroes -DartifactId=aXMLRPC -Dversion=1.7.2 -Dpackaging=jar -Durl=<your private repo>
+    cd ..
+    git clone https://github.com/lgringo/dokuJClient
+    cd dokuJClient
+    mvn clean package source:jar javadoc:jar deploy:deploy-file -Dfile=target/dokujclient-1.0-SNAPSHOT.jar -Dsources=target/dokujclient-1.0-SNAPSHOT-sources.jar -Djavadoc=target/dokujclient-1.0-SNAPSHOT-javadoc.jar -DgroupId=fr.turri -DartifactId=dokujclient -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Durl=<your private repo>
+    cd ..
+
+For example, if you use a Nexus Repository :
+	url=https://www.myserver.com/nexus/content/repositories/thirdparty/
+
+DokuJClient
+===========
+
 Dokujclient is both a command line tool to interact with instances of Dokwiki,
 and a Java library for [Dokuwiki xmlrpc interface](https://www.dokuwiki.org/devel:xmlrpc).
 
@@ -101,38 +142,6 @@ Getting the binaries
 --------------------
 Binaries may be [downloaded](http://turri.fr/dokujclient) directly.
 
-To build them from the sources, see below.
-
-Hacking with Eclipse
---------------------
-
-To use the Eclipse projet, you need to have aXMLRPC.jar in the 3rdparty directory.
-
-Just compiling once from the command line (see below) will set up the environmnent.
-
-
-Compiling from the command line
--------------------------------
-
-On ubuntu, at the root of the project run:
-
-    ./bootstrap.sh
-    sudo apt-get install ant
-    ant
-
-Documentation
-------------
-
-To build documentation you must have doxygen installed. Then, run at the root of the repo:
-
-    ant doc
-
-You may also directly [browse it](http://turri.fr/dokujclient/doc) online.
-
-
-Dependencies
-------------
-* [aXMLRPC.jar](https://github.com/timroes/aXMLRPC)
 
 Running integration tests
 --------------------------
